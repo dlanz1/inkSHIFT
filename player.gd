@@ -40,6 +40,14 @@ func _physics_process(delta: float) -> void:
 		sprite.flip_h = false
 	elif direction < 0:
 		sprite.flip_h = true
+	
+	# Play animations
+	if not is_on_floor():
+		sprite.play("jump")
+	elif direction != 0:
+		sprite.play("run")
+	else:
+		sprite.play("idle")
 
 	move_and_slide()
 
