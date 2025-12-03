@@ -2,10 +2,18 @@ extends Node2D
 
 @onready var player: Node = $Player
 
+var hud_scene = preload("res://scenes/hud.tscn")
 
 func _ready() -> void:
 	if is_instance_valid(player):
 		player.respawn_started.connect(_on_player_respawn_started)
+	
+	var hud = hud_scene.instantiate()
+	$CanvasLayer.add_child(hud)
+	
+	var manager := get_tree().get_first_node_in_group("game_manager")
+	if manager and manager.has_method("set_hud"):
+		manager.set_hud(hud)
 
 
 func _on_player_respawn_started() -> void:
