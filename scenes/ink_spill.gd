@@ -10,14 +10,24 @@ extends Area2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var polygon: Polygon2D = $Polygon2D
 @onready var player: CharacterBody2D = get_node_or_null(player_path) as CharacterBody2D
+@onready var game_manager = %GameManager
 
 var _current_width: float = 0.0
+var width_history: Array[float] = []
+const MAX_HISTORY_SIZE := 180 # 3 seconds at 60 FPS
 
 func _ready() -> void:
 	connect("body_entered", Callable(self, "_on_body_entered"))
 	reset_spill()
+	if game_manager:
+		game_manager.shift_activated.connect(_on_shift_activated)
 
 func _process(delta: float) -> void:
+	# Track width
+	width_history.append(_current_width)
+	if width_history.size() > MAX_HISTORY_SIZE:
+		width_history.pop_front()
+
 	if _current_width >= max_width:
 		_update_polygon()
 		return
@@ -71,3 +81,12 @@ func _update_polygon() -> void:
 		Vector2(1.0, 1.0),
 		Vector2(0.0, 1.0)
 	])
+
+func _on_shift_activated() -> void:
+	if width_history.size() > 0:
+		print("Rewinding ink spill! History size: ", width_history.size())
+		_set_width(width_history[0])
+		_update_polygon()
+		width_history.clear()
+	else:
+		print("No ink spill history to rewind to!")

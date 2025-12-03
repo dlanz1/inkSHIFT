@@ -3,6 +3,8 @@ extends Node
 const GROUP_NAME := "game_manager"
 const MAX_CHARGE := 8
 
+signal shift_activated
+
 var double_jump_charge := 0
 var hud: Control
 
@@ -65,4 +67,5 @@ func _set_invert_effect(enabled: bool) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("shift") and double_jump_charge == MAX_CHARGE:
 		print("Ability Triggered!")
+		shift_activated.emit()
 		reset_charge()
