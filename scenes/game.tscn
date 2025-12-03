@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://q4853j0etbvs" path="res://scenes/platform.tscn" id="3_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://ckhrkqydfcavt" path="res://assets/images/deathblot/Timeline 1_00107892.png" id="5_05nbr"]
 [ext_resource type="Texture2D" uid="uid://ctbjetefybbnw" path="res://assets/images/deathblot/Timeline 1_00107893.png" id="6_0sl42"]
-[ext_resource type="Texture2D" uid="uid://jmc4saqj6h57" path="res://assets/images/notebook paper background.jpg" id="6_8qswn"]
+[ext_resource type="Texture2D" uid="uid://d1yixmn77af8s" path="res://assets/images/crumple background neww.jpg" id="6_8qswn"]
 [ext_resource type="Texture2D" uid="uid://cl6684aflav3q" path="res://assets/images/deathblot/Timeline 1_00107894.png" id="7_oaba0"]
 [ext_resource type="Texture2D" uid="uid://btar4rjksugbu" path="res://assets/images/deathblot/Timeline 1_00107895.png" id="8_458eo"]
 [ext_resource type="Texture2D" uid="uid://c4aegl7nv1ch0" path="res://assets/images/deathblot/Timeline 1_00107896.png" id="9_h3rex"]
@@ -459,8 +459,8 @@ position_smoothing_enabled = true
 motion_scale = Vector2(0.53, 0.53)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(629.5001, -82.99997)
-scale = Vector2(0.413, 0.4608488)
+position = Vector2(448.00003, 79.50011)
+scale = Vector2(1.269, 0.8991668)
 texture = ExtResource("6_8qswn")
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
