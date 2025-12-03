@@ -1,6 +1,6 @@
 # inkSHIFT - Game Design 3751
 
-**inkSHIFT** is a game built in Godot featuring 2d platforming gameplay, but with 3d foreground and background elements to further immerse the player. The theme/aesthetic of the game is a stickman/notebook style. Key mechanics and features will include thematic enemies, engaging level design, and even a dark mode for late-night sessions.
+**inkSHIFT** is a game built in Godot featuring 2d platforming gameplay. The theme/aesthetic of the game is a stickman/notebook style. Key mechanics and features will include engaging level design, sporatic and stressful moments, and the ever-growing ink spill.
 
 ### Attributions
 https://www.storyblocks.com/video/stock/jam-splatter-spreading-on-pure-backdrop-transition-s-mukzkwrjxsi31hz
