@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://i45tjqh0ac1y"
+path="res://.godot/imported/ink spill sound.mp3-8b83fe1b79b40c035673bd0ec2062088.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/ink spill sound.mp3"
+dest_files=["res://.godot/imported/ink spill sound.mp3-8b83fe1b79b40c035673bd0ec2062088.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -10,6 +10,7 @@ func _ready() -> void:
 	
 	var hud = hud_scene.instantiate()
 	$CanvasLayer.add_child(hud)
+	$CanvasLayer.move_child(hud, 0)
 	
 	var manager := get_tree().get_first_node_in_group("game_manager")
 	if manager and manager.has_method("set_hud"):

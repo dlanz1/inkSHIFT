@@ -12,17 +12,47 @@ extends Area2D
 @onready var player: CharacterBody2D = get_node_or_null(player_path) as CharacterBody2D
 @onready var game_manager = %GameManager
 
+const INK_SOUND = preload("res://assets/sounds/ink spill sound.mp3")
+
 var _current_width: float = 0.0
 var width_history: Array[float] = []
 const MAX_HISTORY_SIZE := 180 # 3 seconds at 60 FPS
 
+var audio_player: AudioStreamPlayer
+var _is_respawning: bool = false
+
 func _ready() -> void:
 	connect("body_entered", Callable(self, "_on_body_entered"))
+	
+	audio_player = AudioStreamPlayer.new()
+	audio_player.stream = INK_SOUND
+	audio_player.autoplay = true
+	audio_player.bus = "SFX" # Assuming SFX bus exists, otherwise default Master is fine
+	add_child(audio_player)
+	
 	reset_spill()
-	if game_manager:
-		game_manager.shift_activated.connect(_on_shift_activated)
+	# Removed signal connection to allow Player to control execution order
+	# if game_manager:
+	# 	game_manager.shift_activated.connect(_on_shift_activated)
 
 func _process(delta: float) -> void:
+	# Audio fading logic
+	if player and audio_player:
+		if _is_respawning:
+			audio_player.volume_db = -80.0 # Mute during respawn
+		else:
+			var spill_right_edge_x = global_position.x + _current_width
+			var player_x = player.global_position.x
+			var distance = player_x - spill_right_edge_x
+			
+			# Distance thresholds
+			var min_dist = 150.0 # Full volume
+			var max_dist = 400.0 # Silence
+			var max_vol = 0.4 # Lower max volume
+			
+			var volume_linear = (1.0 - clamp((distance - min_dist) / (max_dist - min_dist), 0.0, 1.0)) * max_vol
+			audio_player.volume_db = linear_to_db(volume_linear)
+
 	# Track width
 	width_history.append(_current_width)
 	if width_history.size() > MAX_HISTORY_SIZE:
@@ -39,6 +69,7 @@ func _process(delta: float) -> void:
 	_update_polygon()
 
 func reset_spill() -> void:
+	_is_respawning = false
 	_set_width(start_width)
 	_update_polygon()
 
@@ -56,7 +87,7 @@ func _set_width(width: float) -> void:
 	_update_polygon()
 
 func _on_player_respawn_started() -> void:
-	pass
+	_is_respawning = true
 
 func _on_body_entered(body: Node) -> void:
 	if player and body == player:
@@ -82,7 +113,7 @@ func _update_polygon() -> void:
 		Vector2(0.0, 1.0)
 	])
 
-func _on_shift_activated() -> void:
+func rewind_spill() -> void:
 	if width_history.size() > 0:
 		print("Rewinding ink spill! History size: ", width_history.size())
 		_set_width(width_history[0])

@@ -95,6 +95,10 @@ func _on_respawn_animation_frame_changed() -> void:
 		self.show()
 
 func _on_shift_activated() -> void:
+	# Rewind ink spill BEFORE player moves
+	if ink_spill and ink_spill.has_method("rewind_spill"):
+		ink_spill.rewind_spill()
+
 	if position_history.size() > 0:
 		print("Shifting back! History size: ", position_history.size())
 		
