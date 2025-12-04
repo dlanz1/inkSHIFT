@@ -160,6 +160,7 @@ shape = SubResource("CircleShape2D_j0dbs")
 
 [node name="PickupSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_17po2")
+volume_db = 11.0
 bus = &"Sound Effects"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
