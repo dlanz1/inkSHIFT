@@ -1,12 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dryunfu8ery2n"]
+[gd_scene load_steps=6 format=3 uid="uid://dryunfu8ery2n"]
 
 [ext_resource type="FontFile" uid="uid://drifrp7tqglk2" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_5mbse"]
 [ext_resource type="Script" uid="uid://b776e23kfevf6" path="res://scenes/mainmenu.gd" id="1_natt5"]
+[ext_resource type="Texture2D" uid="uid://b0oj5r5m4f4qo" path="res://assets/images/crumple background new.jpg" id="2_r3g3c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_natt5"]
-bg_color = Color(0.0823529, 0.0705882, 0.0901961, 1)
 content_margin_top = 15.0
 content_margin_bottom = 15.0
+bg_color = Color(0.0823529, 0.0705882, 0.0901961, 1)
 shadow_size = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5mbse"]
@@ -21,6 +22,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_natt5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(574.99994, 322.5)
+scale = Vector2(0.19299999, 0.16274999)
+texture = ExtResource("2_r3g3c")
 
 [node name="start" type="Button" parent="."]
 layout_mode = 1
@@ -37,9 +43,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_5mbse")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/hover = SubResource("StyleBoxFlat_natt5")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_natt5")
 theme_override_styles/normal = SubResource("StyleBoxFlat_natt5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_natt5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_natt5")
 text = "the spill grows...
 (click to start)"
 
@@ -58,9 +64,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_5mbse")
 theme_override_font_sizes/font_size = 14
-theme_override_styles/hover = SubResource("StyleBoxFlat_5mbse")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_5mbse")
 theme_override_styles/normal = SubResource("StyleBoxFlat_5mbse")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5mbse")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5mbse")
 text = "exit"
 
 [node name="inkSHIFT label" type="Label" parent="."]
@@ -107,15 +113,15 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1_5mbse")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_natt5")
-theme_override_styles/hover = SubResource("StyleBoxFlat_natt5")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_natt5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_natt5")
 text = "Pencil"
 
 [node name="PencilDesc" type="Label" parent="DifficultySelector/PencilContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
 theme_override_fonts/font = ExtResource("1_5mbse")
 theme_override_font_sizes/font_size = 14
-theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
 text = "Slower ink. For a relaxed pace."
 horizontal_alignment = 1
 
@@ -128,15 +134,15 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1_5mbse")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_natt5")
-theme_override_styles/hover = SubResource("StyleBoxFlat_natt5")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_natt5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_natt5")
 text = "Pen"
 
 [node name="PenDesc" type="Label" parent="DifficultySelector/PenContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
 theme_override_fonts/font = ExtResource("1_5mbse")
 theme_override_font_sizes/font_size = 14
-theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
 text = "Standard speed. The classic challenge."
 horizontal_alignment = 1
 
@@ -149,21 +155,20 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1_5mbse")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_natt5")
-theme_override_styles/hover = SubResource("StyleBoxFlat_natt5")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_natt5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_natt5")
 text = "Sharpie"
 
 [node name="SharpieDesc" type="Label" parent="DifficultySelector/SharpieContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
 theme_override_fonts/font = ExtResource("1_5mbse")
 theme_override_font_sizes/font_size = 14
-theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
 text = "Fast ink. No hesitation allowed."
 horizontal_alignment = 1
 
+[connection signal="pressed" from="start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="DifficultySelector/PencilContainer/Pencil" to="." method="_on_pencil_pressed"]
 [connection signal="pressed" from="DifficultySelector/PenContainer/Pen" to="." method="_on_pen_pressed"]
 [connection signal="pressed" from="DifficultySelector/SharpieContainer/Sharpie" to="." method="_on_sharpie_pressed"]
-
-[connection signal="pressed" from="start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]
