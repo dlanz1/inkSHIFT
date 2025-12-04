@@ -41,10 +41,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	# Audio fading logic
-	if player and audio_player:
-		if _is_respawning:
-			return # Volume is handled by tween
-			
+	if player and audio_player and not _is_respawning:
 		var spill_right_edge_x = global_position.x + _current_width
 		var player_x = player.global_position.x
 		var distance = player_x - spill_right_edge_x
