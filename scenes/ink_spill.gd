@@ -52,7 +52,10 @@ func _process(delta: float) -> void:
 		var max_vol = 0.6 # Lower max volume
 		
 		var volume_linear = (1.0 - clamp((distance - min_dist) / (max_dist - min_dist), 0.0, 1.0)) * max_vol
-		audio_player.volume_db = linear_to_db(volume_linear)
+		if volume_linear > 0.0:
+			audio_player.volume_db = linear_to_db(volume_linear)
+		else:
+			audio_player.volume_db = -80.0  # Effectively silent
 
 	# Track width
 	width_history.append(_current_width)
