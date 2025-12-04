@@ -1,10 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://v1u6u7416ydt"]
+[gd_scene load_steps=31 format=3 uid="uid://v1u6u7416ydt"]
 
 [ext_resource type="Script" uid="uid://cch3wan3u8qyf" path="res://player.gd" id="1_g2els"]
-[ext_resource type="Texture2D" uid="uid://run_png_uid" path="res://assets/stickman/Run.png" id="2_run"]
-[ext_resource type="Texture2D" uid="uid://idle_png_uid" path="res://assets/stickman/Idle.png" id="3_idle"]
-[ext_resource type="Texture2D" uid="uid://jump_png_uid" path="res://assets/stickman/Jump.png" id="4_jump"]
-[ext_resource type="Texture2D" uid="uid://death_png_uid" path="res://assets/stickman/Death.png" id="5_death"]
+[ext_resource type="Texture2D" uid="uid://blqu4k2u7ku20" path="res://assets/stickman/Run.png" id="2_run"]
+[ext_resource type="Texture2D" uid="uid://tqqjt6vac0be" path="res://assets/stickman/Idle.png" id="3_idle"]
+[ext_resource type="Texture2D" uid="uid://8cfanhuwku8m" path="res://assets/stickman/Death.png" id="5_death"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_death_1"]
 atlas = ExtResource("5_death")
@@ -66,21 +65,9 @@ region = Rect2(256, 0, 64, 64)
 atlas = ExtResource("3_idle")
 region = Rect2(320, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jump_1"]
-atlas = ExtResource("4_jump")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jump_2"]
-atlas = ExtResource("4_jump")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jump_3"]
-atlas = ExtResource("4_jump")
-region = Rect2(0, 64, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jump_4"]
-atlas = ExtResource("4_jump")
-region = Rect2(64, 64, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_run_3"]
+atlas = ExtResource("2_run")
+region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_run_1"]
 atlas = ExtResource("2_run")
@@ -89,10 +76,6 @@ region = Rect2(0, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_run_2"]
 atlas = ExtResource("2_run")
 region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_run_3"]
-atlas = ExtResource("2_run")
-region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_run_4"]
 atlas = ExtResource("2_run")
@@ -217,8 +200,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2els"]
-radius = 6.0
-height = 19.0
+radius = 5.0
+height = 26.0
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 5
@@ -232,5 +215,5 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -9.5)
+position = Vector2(-1, -12)
 shape = SubResource("CapsuleShape2D_g2els")

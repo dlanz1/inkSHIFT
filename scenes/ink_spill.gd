@@ -20,6 +20,7 @@ const MAX_HISTORY_SIZE := 180 # 3 seconds at 60 FPS
 
 var audio_player: AudioStreamPlayer
 var _is_respawning: bool = false
+var fade_tween: Tween
 
 func _ready() -> void:
 	connect("body_entered", Callable(self, "_on_body_entered"))
@@ -42,19 +43,19 @@ func _process(delta: float) -> void:
 	# Audio fading logic
 	if player and audio_player:
 		if _is_respawning:
-			audio_player.volume_db = -80.0 # Mute during respawn
-		else:
-			var spill_right_edge_x = global_position.x + _current_width
-			var player_x = player.global_position.x
-			var distance = player_x - spill_right_edge_x
+			return # Volume is handled by tween
 			
-			# Distance thresholds
-			var min_dist = 150.0 # Full volume
-			var max_dist = 400.0 # Silence
-			var max_vol = 0.4 # Lower max volume
-			
-			var volume_linear = (1.0 - clamp((distance - min_dist) / (max_dist - min_dist), 0.0, 1.0)) * max_vol
-			audio_player.volume_db = linear_to_db(volume_linear)
+		var spill_right_edge_x = global_position.x + _current_width
+		var player_x = player.global_position.x
+		var distance = player_x - spill_right_edge_x
+		
+		# Distance thresholds
+		var min_dist = 150.0 # Full volume
+		var max_dist = 400.0 # Silence
+		var max_vol = 0.6 # Lower max volume
+		
+		var volume_linear = (1.0 - clamp((distance - min_dist) / (max_dist - min_dist), 0.0, 1.0)) * max_vol
+		audio_player.volume_db = linear_to_db(volume_linear)
 
 	# Track width
 	width_history.append(_current_width)
@@ -72,6 +73,8 @@ func _process(delta: float) -> void:
 	_update_polygon()
 
 func reset_spill() -> void:
+	if fade_tween:
+		fade_tween.kill()
 	_is_respawning = false
 	_set_width(start_width)
 	_update_polygon()
@@ -91,6 +94,11 @@ func _set_width(width: float) -> void:
 
 func _on_player_respawn_started() -> void:
 	_is_respawning = true
+	if audio_player:
+		if fade_tween:
+			fade_tween.kill()
+		fade_tween = create_tween()
+		fade_tween.tween_property(audio_player, "volume_db", -80.0, 2)
 
 func _on_body_entered(body: Node) -> void:
 	if player and body == player:

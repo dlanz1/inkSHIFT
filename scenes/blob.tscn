@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cpualcehd2a81"]
+[gd_scene load_steps=20 format=3 uid="uid://cpualcehd2a81"]
 
 [ext_resource type="Script" uid="uid://dprole4qa5h7l" path="res://blob.gd" id="1_ngma2"]
 [ext_resource type="AudioStream" uid="uid://8k3xh50q2uo4" path="res://assets/sounds/blob pickup.wav" id="3_17po2"]
@@ -60,7 +60,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j0dbs"]
-radius = 5.0
+radius = 6.0
 
 [sub_resource type="Animation" id="Animation_7crg0"]
 resource_name = "PickupAnimation"
@@ -142,8 +142,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u7pkv"]
 _data = {
-"PickupAnimation": SubResource("Animation_7crg0"),
-"RESET": SubResource("Animation_8gt5w")
+&"PickupAnimation": SubResource("Animation_7crg0"),
+&"RESET": SubResource("Animation_8gt5w")
 }
 
 [node name="Blob" type="Area2D"]
@@ -164,7 +164,7 @@ bus = &"Sound Effects"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_u7pkv")
+&"": SubResource("AnimationLibrary_u7pkv")
 }
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
