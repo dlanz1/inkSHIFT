@@ -1,4 +1,5 @@
 extends Node
+class_name GameManager
 
 const GROUP_NAME := "game_manager"
 const MAX_CHARGE := 8
@@ -6,6 +7,7 @@ const MAX_CHARGE := 8
 signal shift_activated
 
 var double_jump_charge := 0
+static var difficulty_modifier: float = 0.0
 var hud: Control
 
 @onready var charge_label: Label = $ChargeLabel

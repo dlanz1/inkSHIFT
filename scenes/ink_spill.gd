@@ -31,6 +31,9 @@ func _ready() -> void:
 	add_child(audio_player)
 	
 	reset_spill()
+	
+	expansion_speed -= GameManager.difficulty_modifier
+	
 	# Removed signal connection to allow Player to control execution order
 	# if game_manager:
 	# 	game_manager.shift_activated.connect(_on_shift_activated)

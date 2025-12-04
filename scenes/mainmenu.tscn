@@ -5,6 +5,8 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_natt5"]
 bg_color = Color(0.0823529, 0.0705882, 0.0901961, 1)
+content_margin_top = 15.0
+content_margin_bottom = 15.0
 shadow_size = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5mbse"]
@@ -79,6 +81,53 @@ theme_override_constants/shadow_outline_size = 40
 theme_override_fonts/font = ExtResource("1_5mbse")
 theme_override_font_sizes/font_size = 100
 text = "inkSHIFT"
+
+[node name="DifficultySelector" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -50.0
+offset_right = 176.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 60
+
+[node name="Pencil" type="Button" parent="DifficultySelector"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_5mbse")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_natt5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_natt5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_natt5")
+text = "Pencil"
+
+[node name="Pen" type="Button" parent="DifficultySelector"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_5mbse")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_natt5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_natt5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_natt5")
+text = "Pen"
+
+[node name="Sharpie" type="Button" parent="DifficultySelector"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_5mbse")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_natt5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_natt5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_natt5")
+text = "Sharpie"
+
+[connection signal="pressed" from="DifficultySelector/Pencil" to="." method="_on_pencil_pressed"]
+[connection signal="pressed" from="DifficultySelector/Pen" to="." method="_on_pen_pressed"]
+[connection signal="pressed" from="DifficultySelector/Sharpie" to="." method="_on_sharpie_pressed"]
 
 [connection signal="pressed" from="start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]
